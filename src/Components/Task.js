@@ -3,17 +3,12 @@ import TaskList from './TaskList';
 
 
 class Task extends Component {
-	constructor(props){
-		super(props)
-		this.state = {items: this.props.item};
-	}
-
 	deleteTask(e){
-		console.log(e.nativeEvent);
+		this.props.onDeleteTask(e);		
 	}
 
 	render() {
-		var items = this.state.items;
+		var items = this.props.item;
 		
 		return (
 			<div>

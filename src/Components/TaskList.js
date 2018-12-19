@@ -10,7 +10,7 @@ class TaskList extends Component {
 	render() {
 		var items = this.props.items;
 		var list = items.map((item, index)=>
-			<ListItem key={index.toString()} id={index.toString()} value={item} deleteHandler={this.deleteTaskList.bind(this)}></ListItem>
+			<ListItem key={index.toString()} id={item.id} value={item.value} deleteHandler={this.deleteTaskList.bind(this)}></ListItem>
 		);
 		return (
 				<ul>

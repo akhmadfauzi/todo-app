@@ -7,6 +7,7 @@ class Todo extends Component {
 		super(props);
 		this.taskOnKeyDown = this.taskOnKeyDown.bind(this);
 		this.inputOnFocus = this.inputOnFocus.bind(this);
+		this.deleteTask = this.deleteTask.bind(this);
 		this.state = {items:[]}
 	}
 
@@ -14,7 +15,13 @@ class Todo extends Component {
 		var target = e.target;
 		var container = this.state.items;
 		if(e.keyCode === 13 && target.value !== ''){
-			container.push(target.value);
+			let id;
+			if(!container.length){
+				id=0;
+			}else{
+				id=container.length+1;
+			}
+			container.push({id: id, value:target.value});
 			this.setState({items: container});
 			target.value="";
 		}
@@ -23,8 +30,18 @@ class Todo extends Component {
 
 	inputOnFocus(e){
 		var target = e.target;
-		console.log(e.currentTarget);
-		console.log(e.detail);
+		
+	}
+
+	deleteTask(e){
+		var target = e.target;
+		var id = target.dataset.id;
+		var items = this.state.items;
+		if(id !== ''){
+			items = items.filter((item)=> item.id.toString() !== id);			
+		}
+
+		this.setState({items: items});
 	}
 
 	render() {
@@ -43,7 +60,7 @@ class Todo extends Component {
 					<div className="panel">
 						<div className="panel-head"><label htmlFor="">Task list :</label></div>
 						<div className="panel-body">
-							<Task item={taskList}></Task>
+							<Task item={taskList} onDeleteTask={this.deleteTask}></Task>
 						</div>
 					</div>
 					
