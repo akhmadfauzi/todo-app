@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import TaskList from './TaskList';
+
 
 class Task extends Component {
 	constructor(props){
@@ -6,16 +8,16 @@ class Task extends Component {
 		this.state = {items: this.props.item};
 	}
 
+	deleteTask(e){
+		console.log(e.nativeEvent);
+	}
+
 	render() {
 		var items = this.state.items;
-		var list = items.map((item)=>
-			<li>{item}</li>
-		);
+		
 		return (
 			<div>
-				<ul>
-					{list}
-				</ul>
+				<TaskList items={items} deleteTask={this.deleteTask.bind(this)}></TaskList>
 			</div>
 		);
 	}
