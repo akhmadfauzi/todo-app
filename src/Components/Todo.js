@@ -48,6 +48,11 @@ class Todo extends Component {
 		var taskList = this.state.items;
 		return (
 			<div>
+				<div className="todo-header">
+					<div className="todo-container">
+						<h3 style={{'color':'#fff', 'lineHeight':'10px'}}>Simple Todo</h3>
+					</div>	
+				</div>
 				<div className="todo-container">
 					<div className="panel">
 						<div className="panel-head"><label htmlFor="">Enter a task :</label></div>
