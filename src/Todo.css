@@ -25,6 +25,12 @@
 	width: 100%;
 }
 
+.item-value{
+	max-width: 200px;
+	overflow: hidden;
+	display: inline-block;
+}
+
 @media only screen and (min-width: 1024px) {
     .todo-container{
 		width: 80%;

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 class ListItem extends Component {
 	deleteHandler(e){		
@@ -6,10 +8,14 @@ class ListItem extends Component {
 	}
 
 	render() {
+		const value = this.props.value;
+		const caption = (value.length > 14) ? (value.substring(0,20) + '...') : value;
+		const titleValue = value;
+		const altValue = value
 		return (
-			<div>
-				<li>{this.props.value} <span data-id={this.props.id} onClick={this.deleteHandler.bind(this)}>[x]</span></li>	
-			</div>
+			
+				<li><span className="item-value" title={titleValue} alt={altValue}>{caption}</span> <span className="delete-button" data-id={this.props.id} onClick={this.deleteHandler.bind(this)}>[x]</span></li>	
+			
 		);
 	}
 }
