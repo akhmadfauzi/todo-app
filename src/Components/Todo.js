@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import '../Todo.css';
 import Task from './Task';
+import ErrorBoundary from './ErrorBoundary';
 
 class Todo extends Component {
 	constructor(props){
@@ -46,30 +47,35 @@ class Todo extends Component {
 
 	render() {
 		var taskList = this.state.items;
+		
 		return (
 			<div>
-				<div className="todo-header">
+				<ErrorBoundary> 
+					<div className="todo-header">
+						<div className="todo-container">
+							<h3 style={{'color':'#fff', 'lineHeight':'10px'}}>Simple Todo</h3>
+						</div>	
+					</div>
 					<div className="todo-container">
-						<h3 style={{'color':'#fff', 'lineHeight':'10px'}}>Simple Todo</h3>
-					</div>	
-				</div>
-				<div className="todo-container">
-					<div className="panel">
-						<div className="panel-head"><label htmlFor="">Enter a task :</label></div>
-						<div className="panel-body">
-							<div className="input-container">
-								<input type="text" placeholder="Enter a task" onKeyDown={this.taskOnKeyDown} onFocus={this.inputOnFocus}/>
+						<div className="panel">
+							<div className="panel-head"><label htmlFor="">Enter a task :</label></div>
+							<div className="panel-body">
+								<div className="input-container">
+									<input type="text" placeholder="Enter a task" onKeyDown={this.taskOnKeyDown} onFocus={this.inputOnFocus}/>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div className="panel">
-						<div className="panel-head"><label htmlFor="">Task list :</label></div>
-						<div className="panel-body">
-							<Task item={taskList} onDeleteTask={this.deleteTask}></Task>
+						<div className="panel">
+							<div className="panel-head"><label htmlFor="">Task list :</label></div>
+							<div className="panel-body">
+								<Task item={taskList} onDeleteTask={this.deleteTask}></Task>
+							</div>
 						</div>
+						
 					</div>
-					
-				</div>
+				
+
+				</ErrorBoundary>
 			</div>
 		);
 	}
